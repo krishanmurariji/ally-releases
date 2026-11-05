@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ally: AI meeting assistant for Windows, invisible to screen sharing</title>
+<meta name="description" content="Ally is an AI meeting assistant for Windows: live answers, rolling notes and your own documents in a window only you can see. Works offline or with your own AI key.">
+<meta name="theme-color" content="#080b10">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://krishanmurariji.github.io/ally-releases/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Ally">
+<meta property="og:title" content="Ally: AI meeting assistant for Windows, invisible to screen sharing">
+<meta property="og:description" content="Live answers, rolling notes and your own documents, in a window only you can see. Offline or with your own Claude or ChatGPT key.">
+<meta property="og:url" content="https://krishanmurariji.github.io/ally-releases/"><meta property="og:image" content="https://krishanmurariji.github.io/ally-releases/assets/og.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://krishanmurariji.github.io/ally-releases/assets/og.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "SoftwareApplication", "name": "Ally", "alternateName": "Ally AI companion", "applicationCategory": "BusinessApplication", "operatingSystem": "Windows 10, Windows 11", "description": "Personal AI companion for Windows that listens to meetings, interviews and calls, suggests answers and keeps live notes. Hidden from screen sharing. Works offline or with your own Claude or ChatGPT API key.", "url": "https://krishanmurariji.github.io/ally-releases/", "image": "https://krishanmurariji.github.io/ally-releases/assets/og.jpg", "downloadUrl": "https://github.com/krishanmurariji/ally-releases/releases/latest/download/Ally-Setup.exe", "softwareHelp": "https://krishanmurariji.github.io/ally-releases/#faq"}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is Ally?", "acceptedAnswer": {"@type": "Answer", "text": "Ally is a personal AI companion for Windows 10 and 11. It listens to a meeting, interview or call, suggests short answers to the questions it hears, keeps rolling notes and can answer from your own PDFs, spreadsheets and documents."}}, {"@type": "Question", "name": "Can other people see Ally during screen sharing?", "acceptedAnswer": {"@type": "Answer", "text": "Ally's windows are excluded from screen sharing, recordings and screenshots using a Windows feature for protected content. It needs Windows 10 version 2004 or newer. Some remote-desktop tools behave differently, so test it before an important call."}}, {"@type": "Question", "name": "Does Ally work offline?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. In offline mode speech recognition (Whisper) and the AI (Ollama models) run on your own PC, with no account and nothing sent anywhere. The installer suggests models that fit your hardware and shows each download size before it starts."}}, {"@type": "Question", "name": "Which AI services does Ally use?", "acceptedAnswer": {"@type": "Answer", "text": "Offline it uses local models. Online it uses Claude from Anthropic or ChatGPT from OpenAI with your own API key, which is encrypted on your PC. You pay that provider directly for what you use."}}, {"@type": "Question", "name": "Is there help getting started?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. After installing, Ally opens its Control Center with a short step-by-step guide in plain language. It checks that Ally can hear and answer, helps you pick a mode, fill it in with a preset, add your files and turn it on. You can skip it at any time, choose not to see it again, or open it again with the ? button."}}, {"@type": "Question", "name": "Which file types can Ally use as reference material?", "acceptedAnswer": {"@type": "Answer", "text": "PDF, Excel, CSV, Word and plain text, up to 60 MB per file. Ally finds the passages relevant to each question and tells you which file they came from. Scanned PDFs without text cannot be read."}}, {"@type": "Question", "name": "How big is the download?", "acceptedAnswer": {"@type": "Answer", "text": "The web installer is about 130 KB and downloads only what you choose. An offline setup is about 245 MB plus the models you pick, and an online setup starts from about 180 MB. A single all-in-one installer is also available on the releases page."}}, {"@type": "Question", "name": "Why does Windows show a SmartScreen warning?", "acceptedAnswer": {"@type": "Answer", "text": "The installer is not code-signed yet, so Windows may show a notice the first time. Choose More info, then Run anyway."}}]}]}</script>
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="style.css">
+<script src="theme.js"></script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></symbol></svg>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="top">
+  <a class="brand" href="#top" aria-label="Ally, back to the top"><img src="assets/ally-wordmark.png" alt="Ally" width="52" height="28"></a>
+  <nav aria-label="Sections"><a href="#chapters">What it does</a><a href="#private">Privacy</a><a href="#faq">FAQ</a><a href="#get">Download</a></nav>
+  <button class="tbtn ghostbtn" id="themeBtn" type="button" aria-label="Switch to the white theme"><svg class="ic ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg class="ic ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+</header>
+
+<main id="top">
+  <!-- HERO: a pinned 3D scene. Scrolling pulls the private layer out of the call and into the light. -->
+  <section class="hero3d" id="hero" data-scene aria-labelledby="h1">
+    <div class="pin">
+      <div class="space" aria-hidden="true"><div class="floor"></div></div>
+      <div class="stage3d" id="stage" aria-hidden="true" inert>
+        <div class="slab call3d">
+          <div class="call">
+                  <div class="callbar"><span><i class="rec"></i>REC 00:41:07</span><span>Product sync · 12 participants</span><span class="share">Sharing your screen</span></div>
+                  <div class="tiles"><div class="tile t1"><b>MR</b></div><div class="tile t2"><b>JT</b></div><div class="tile t3"><b>PN</b></div><div class="tile t4"><b>You</b></div><div class="tile t5"><b>AK</b></div><div class="tile t6"><b>SL</b></div></div>
+          </div>
+        </div>
+        <div class="slab ally3d"><img src="assets/shots/overlay-answer.webp" alt="" width="940" height="940" decoding="async" fetchpriority="high"></div>
+        <p class="tag t-a mono">What everyone sees</p>
+        <p class="tag t-b mono">What only you see</p>
+      </div>
+      <h1 id="h1" class="sr">Ally: an AI meeting assistant for Windows that only you can see</h1>
+      <div class="headline" aria-hidden="true">
+        <p class="big h-a">A quiet<br>meeting.</p>
+        <p class="big h-b">A second<br>pair of ears.</p>
+      </div>
+      <div class="herofoot">
+        <p class="lede">Ally listens to your meetings, interviews and calls, answers questions in seconds and keeps clean notes. Its windows are left out of screen sharing, recordings and screenshots.</p>
+        <div class="ctas"><a class="btn pri" href="#get"><svg class="ic"><use href="#i-download"/></svg>Download for Windows</a><a class="btn" href="#chapters">See what it does</a></div>
+      </div>
+      <p class="cue mono" aria-hidden="true">Scroll to pull it apart<i></i></p>
+    </div>
+  </section>
+
+  <div class="ribbon" aria-hidden="true"><div class="track"><span>Interviews</span><i></i><span>Meeting notes</span><i></i><span>Knowledge Q&amp;A</span><i></i><span>Sales calls</span><i></i><span>Support</span><i></i><span>Lectures</span><i></i><span>Your own modes</span><i></i><span>Interviews</span><i></i><span>Meeting notes</span><i></i><span>Knowledge Q&amp;A</span><i></i><span>Sales calls</span><i></i><span>Support</span><i></i><span>Lectures</span><i></i><span>Your own modes</span><i></i></div></div>
+
+  <!-- CHAPTERS -->
+  <section class="chapters" id="chapters" data-scene>
+    <div class="cstage">
+    <article class="chap">
+      <div class="num" aria-hidden="true">01</div>
+      <div class="txt"><p class="mono">Listens</p><h2>It hears the question<br>before you finish<br><em>reading it.</em></h2><p>Ally transcribes the call as it happens, on your PC. When someone asks you something, a suggested answer is already waiting beside the call, short enough to say out loud.</p></div>
+      <figure class="plate wipe"><div class="crop"><img src="assets/shots/overlay-answer.webp" alt="The Ally overlay suggesting an answer to an interview question" width="940" height="940" loading="lazy" decoding="async"></div><figcaption class="mono">Fig. 01<span>Suggested answer</span></figcaption></figure>
+    </article>
+
+    <article class="chap flip">
+      <div class="num" aria-hidden="true">02</div>
+      <div class="txt"><p class="mono">Remembers</p><h2>Your documents,<br>answered <em>by file.</em></h2><p>Drop in PDFs, spreadsheets, Word files and notes. Ally finds the passages that matter for each question and tells you which file they came from. Nothing leaves your PC when you run offline.</p>
+        <ul class="ticks"><li>PDF, Excel, CSV, Word and text</li><li>Cites the file it used</li><li>Up to 60 MB per file</li></ul></div>
+      <figure class="plate wipe"><div class="crop wide"><img src="assets/shots/center-materials.webp" alt="Ally Control Center with an Excel workbook, a PDF and a CSV file added as reference material" width="2360" height="1560" loading="lazy" decoding="async"></div><figcaption class="mono">Fig. 02<span>Reference materials</span></figcaption></figure>
+    </article>
+
+    <article class="chap">
+      <div class="num" aria-hidden="true">03</div>
+      <div class="txt"><p class="mono">Writes</p><h2>Notes that<br><em>write themselves.</em></h2><p>Summary, decisions, action items and open questions, kept up to date while people talk. Copy them, or save a Markdown file when the call ends.</p>
+        <ul class="ticks"><li>Rolling notes during the call</li><li>A final summary on demand</li><li>Every session saved on your PC</li></ul></div>
+      <figure class="plate wipe"><div class="crop"><img src="assets/shots/overlay-notes.webp" alt="Ally overlay with live notes: summary, decisions, action items and open questions" width="940" height="940" loading="lazy" decoding="async"></div><figcaption class="mono">Fig. 03<span>Live notes</span></figcaption></figure>
+    </article>
+
+    <article class="chap flip">
+      <div class="num" aria-hidden="true">04</div>
+      <div class="txt"><p class="mono">Adapts</p><h2>Six modes.<br>One click to <em>start.</em></h2><p>Interview assistant, meeting notes, knowledge Q&amp;A, sales coach, support and lecture notes. Every mode comes with ready-made presets: pick one, check the text, add your files and save.</p>
+        <ul class="ticks"><li>48 ready-made presets across the modes</li><li>A step-by-step guide on first start, easy to skip</li><li>Ally waits until a mode is completely set up</li></ul></div>
+      <figure class="plate wipe"><div class="crop wide"><img class="on-dark" src="assets/shots/center-presets.webp" alt="Ally Control Center in the black theme: the Interview Assistant mode with a row of presets and the description filled in" width="2360" height="1560" loading="lazy" decoding="async"><img class="on-light" src="assets/shots/center-presets-light.webp" alt="Ally Control Center in the white theme: the Interview Assistant mode with a row of presets and the description filled in" width="2360" height="1560" loading="lazy" decoding="async"></div><figcaption class="mono">Fig. 04<span>Control Center</span></figcaption></figure>
+    </article>
+    </div>
+  </section>
+
+  <!-- PRIVATE -->
+  <section class="private" id="private">
+    <p class="mono">Private by default</p>
+    <h2>You choose where<br>it <em>runs.</em></h2>
+    <div class="table">
+      <div class="row" data-r><div class="k">Offline</div><p>Speech recognition and the AI run on your PC. No accounts, no keys, nothing sent anywhere. Ally picks the model that fits your hardware.</p><div class="v">About 245 MB<small>plus the models you choose</small></div></div>
+      <div class="row" data-r><div class="k">Online</div><p>Use Claude or ChatGPT with your own API key. Fastest answers and the smallest download. Keys are encrypted on your PC.</p><div class="v">From about 180 MB<small>with cloud AI</small></div></div>
+      <div class="row" data-r><div class="k">Custom</div><p>Mix and match: speech on your PC, answers from the cloud, or the other way round. Every choice shows its download size first.</p><div class="v">You decide<small>sizes shown before anything downloads</small></div></div>
+    </div>
+    <p class="note">Ally is independent software. Claude and ChatGPT are trademarks of their owners and are used with your own API key. Needs Windows 10 version 2004 or newer. Remote-desktop tools can behave differently, so try it before an important call.</p>
+  </section>
+
+  <!-- ABOUT + FAQ -->
+  <section class="faq" id="faq">
+    <p class="mono">Questions</p>
+    <h2>Everything you would <em>ask first.</em></h2>
+    <div class="qa"><details><summary>What is Ally?</summary><p>Ally is a personal AI companion for Windows 10 and 11. It listens to a meeting, interview or call, suggests short answers to the questions it hears, keeps rolling notes and can answer from your own PDFs, spreadsheets and documents.</p></details><details><summary>Can other people see Ally during screen sharing?</summary><p>Ally's windows are excluded from screen sharing, recordings and screenshots using a Windows feature for protected content. It needs Windows 10 version 2004 or newer. Some remote-desktop tools behave differently, so test it before an important call.</p></details><details><summary>Does Ally work offline?</summary><p>Yes. In offline mode speech recognition (Whisper) and the AI (Ollama models) run on your own PC, with no account and nothing sent anywhere. The installer suggests models that fit your hardware and shows each download size before it starts.</p></details><details><summary>Which AI services does Ally use?</summary><p>Offline it uses local models. Online it uses Claude from Anthropic or ChatGPT from OpenAI with your own API key, which is encrypted on your PC. You pay that provider directly for what you use.</p></details><details><summary>Is there help getting started?</summary><p>Yes. After installing, Ally opens its Control Center with a short step-by-step guide in plain language. It checks that Ally can hear and answer, helps you pick a mode, fill it in with a preset, add your files and turn it on. You can skip it at any time, choose not to see it again, or open it again with the ? button.</p></details><details><summary>Which file types can Ally use as reference material?</summary><p>PDF, Excel, CSV, Word and plain text, up to 60 MB per file. Ally finds the passages relevant to each question and tells you which file they came from. Scanned PDFs without text cannot be read.</p></details><details><summary>How big is the download?</summary><p>The web installer is about 130 KB and downloads only what you choose. An offline setup is about 245 MB plus the models you pick, and an online setup starts from about 180 MB. A single all-in-one installer is also available on the releases page.</p></details><details><summary>Why does Windows show a SmartScreen warning?</summary><p>The installer is not code-signed yet, so Windows may show a notice the first time. Choose More info, then Run anyway.</p></details></div>
+  </section>
+
+  <!-- DOWNLOAD -->
+  <section class="get" id="get" data-scene>
+    <div class="dl" id="dlroot">
+      <div class="dlbg" aria-hidden="true"></div>
+      <div class="dlhead">
+        <div class="logo3d" aria-hidden="true"><div class="logo-stack" id="stack"></div></div>
+        <h2>Meet <em>Ally.</em></h2>
+        <p class="sub">Your second pair of ears, for Windows 10 and 11.</p>
+      </div>
+      <a class="dlbtn lg" id="dl-big" href="https://github.com/krishanmurariji/ally-releases/releases/latest/download/Ally-Setup.exe" data-config='{"button":true,"cornerRadius":34,"zRadius":30,"blurAmount":0.2,"refraction":0.8,"edgeHighlight":0.2,"specular":0.3,"brightness":-0.05}'><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download Ally-Setup.exe</a>
+      <div class="dlrest">
+        <dl class="spec"><div><dt>Version</dt><dd id="rel-ver">Latest</dd></div><div><dt>Installer</dt><dd id="rel-size">About 130 KB</dd></div><div><dt>Needs</dt><dd>Windows 10 2004+</dd></div></dl>
+        <p class="links">Want a single file? <a id="dl-full" href="https://github.com/krishanmurariji/ally-releases/releases/latest">Get the all-in-one installer</a> or <a href="https://github.com/krishanmurariji/ally-releases/releases">see every release</a>.</p>
+        <p class="warn">Windows may show a SmartScreen notice the first time, because the installer is not code-signed yet. Choose <b>More info</b>, then <b>Run anyway</b>.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><img src="assets/ally-wordmark.png" alt="Ally" width="45" height="24"><span class="mono">Hidden from screen share. Open to you.</span><nav class="mono fnav" aria-label="Use cases"><a href="meeting-notes/">Meeting notes</a><a href="interview-assistant/">Interview assistant</a><a href="lecture-notes/">Lecture notes</a><a href="offline-ai-assistant/">Offline AI</a><a href="https://github.com/krishanmurariji/ally-releases/releases">Releases</a></nav></footer>
+<script src="app.js" defer></script>
+</body>
+</html>
